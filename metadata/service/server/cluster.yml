@@ -3,9 +3,6 @@ applications:
 classes:
 - service.horizon.support
 parameters:
-  _param:
-    horizon_version: kilo
-    horizon_api_version: 3
   horizon:
     server:
       enabled: true
@@ -32,25 +29,45 @@ parameters:
         engine: keystone
         host: ${_param:cluster_vip_address}
         port: 5000
-        api_version: 2
+        api_version: ${_param:horizon_identity_version}
+        encryption: ${_param:horizon_identity_encryption}
   haproxy:
     proxy:
-      listens:
-      - name: horizon
-        type: horizon
-        binds:
-        - address: ${_param:cluster_vip_address}
-          port: 80
-        servers:
-        - name: ctl01
-          host: ${_param:cluster_node01_address}
-          port: 80
-          params: cookie ctl01 check inter 2000 fall 3
-        - name: ctl02
-          host: ${_param:cluster_node02_address}
-          port: 80
-          params: cookie ctl02 check inter 2000 fall 3
-        - name: ctl03
-          host: ${_param:cluster_node03_address}
-          port: 80
-          params: cookie ctl03 check inter 2000 fall 3
+#      listens:
+#      - name: horizon
+#        type: horizon
+#        binds:
+#        - address: ${_param:cluster_vip_address}
+#          port: 80
+#        servers:
+#        - name: ctl01
+#          host: ${_param:cluster_node01_address}
+#          port: 80
+#          params: cookie ctl01 check inter 2000 fall 3
+#        - name: ctl02
+#          host: ${_param:cluster_node02_address}
+#          port: 80
+#          params: cookie ctl02 check inter 2000 fall 3
+#        - name: ctl03
+#          host: ${_param:cluster_node03_address}
+#          port: 80
+#          params: cookie ctl03 check inter 2000 fall 3
+      listen:
+        horizon:
+          type: horizon
+          binds:
+          - address: ${_param:cluster_vip_address}
+            port: 80
+          servers:
+          - name: ${_param:cluster_node01_hostname}
+            host: ${_param:cluster_node01_address}
+            port: 80
+            params: cookie ${_param:cluster_node01_hostname} check inter 2000 fall 3
+          - name: ${_param:cluster_node02_hostname}
+            host: ${_param:cluster_node02_address}
+            port: 80
+            params: cookie ${_param:cluster_node02_hostname} check inter 2000 fall 3
+          - name: ${_param:cluster_node03_hostname}
+            host: ${_param:cluster_node03_address}
+            port: 80
+            params: cookie ${_param:cluster_node03_hostname} check inter 2000 fall 3
