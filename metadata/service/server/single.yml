@@ -4,10 +4,10 @@ classes:
 - service.horizon.support
 parameters:
   _param:
-    horizon_version: liberty
-    horizon_identity_host: localhost
-    horizon_identity_version: 3
-    horizon_identity_encryption: none
+#    horizon_version: liberty
+#    horizon_identity_host: localhost
+#    horizon_identity_version: 3
+#    horizon_identity_encryption: none
   horizon:
     server:
       enabled: true
