@@ -52,22 +52,22 @@ parameters:
 #          host: ${_param:cluster_node03_address}
 #          port: 80
 #          params: cookie ctl03 check inter 2000 fall 3
-      listen:
-        horizon:
-          type: horizon
-          binds:
-          - address: ${_param:cluster_vip_address}
-            port: 80
-          servers:
-          - name: ${_param:cluster_node01_hostname}
-            host: ${_param:cluster_node01_address}
-            port: 80
-            params: cookie ${_param:cluster_node01_hostname} check inter 2000 fall 3
-          - name: ${_param:cluster_node02_hostname}
-            host: ${_param:cluster_node02_address}
-            port: 80
-            params: cookie ${_param:cluster_node02_hostname} check inter 2000 fall 3
-          - name: ${_param:cluster_node03_hostname}
-            host: ${_param:cluster_node03_address}
-            port: 80
-            params: cookie ${_param:cluster_node03_hostname} check inter 2000 fall 3
+#      listen:
+#        horizon:
+#          type: horizon
+#          binds:
+#          - address: ${_param:cluster_vip_address}
+#            port: 80
+#          servers:
+#          - name: ${_param:cluster_node01_hostname}
+#            host: ${_param:cluster_node01_address}
+#            port: 80
+#            params: cookie ${_param:cluster_node01_hostname} check inter 2000 fall 3
+#          - name: ${_param:cluster_node02_hostname}
+#            host: ${_param:cluster_node02_address}
+#            port: 80
+#            params: cookie ${_param:cluster_node02_hostname} check inter 2000 fall 3
+#          - name: ${_param:cluster_node03_hostname}
+#            host: ${_param:cluster_node03_address}
+#            port: 80
+#            params: cookie ${_param:cluster_node03_hostname} check inter 2000 fall 3
